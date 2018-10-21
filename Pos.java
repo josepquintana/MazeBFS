@@ -9,35 +9,41 @@ package myClasses;
  *
  * @author josep
  */
-public class Pos {
-
+public class Pos 
+{
     public int x;
     public int y;
 
-    public Pos() {
+    public Pos() 
+    {
         x = 0;
         y = 0;
     }
 
-    public Pos(int x, int y) {
+    public Pos(int x, int y)
+    {
         this.x = x;
         this.y = y;
     }
 
-    public Pos(Pos p) {
+    public Pos(Pos p) 
+    {
         this.x = p.x;
         this.y = p.y;
     }
 
-    public void setX(int x) {
+    public void setX(int x) 
+    {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(int y) 
+    {
         this.y = y;
     }
     
-    public void printPos() {
+    public void printPos() 
+    {
         System.out.println("-> Pos.x = " + this.x + " Pos.y = " + this.y);
     }
     
