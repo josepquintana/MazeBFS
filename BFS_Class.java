@@ -22,8 +22,8 @@ public final class BFS_Class
     Queue<Integer> cQ;
     static int cost;
     
-    static int MIN      = 0;
-    static int MAX      = 301;
+    static int MIN;
+    static int MAX;
     
     static int Black    = 0xff000000;
     static int Gray     = 0xff222222;
@@ -36,10 +36,12 @@ public final class BFS_Class
     public BFS_Class(BufferedImage img, Pos cpos) 
     {
         image = img;
+        MIN = 0;
+        MAX = image.getWidth();
         visited = new boolean[MAX][MAX];
         Q = new LinkedList();
         cQ = new LinkedList();
-        
+              
         // BFS method
         BFS_Class.cost = calcBFS(cpos);
         printCostToSecDoor();
@@ -50,13 +52,13 @@ public final class BFS_Class
         System.out.println("Cost to SECDOOR: " + cost + "."); 
     }
     
-    public int getColorPixel(Pos pos) 
+    private int getColorPixel(Pos pos) 
     {
         int color_dec = image.getRGB(pos.x, pos.y);
         return color_dec;
     }
     
-    public boolean isAccessible(Pos pos) 
+    private boolean isAccessible(Pos pos) 
     {
         if(pos.x < MIN || pos.x >= MAX) {
             return false;
@@ -70,7 +72,7 @@ public final class BFS_Class
         return true;
     }
     
-    public int getCostPos(Pos pos) 
+    private int getCostPos(Pos pos) 
     {
         if(BFS_Class.Groc   == this.getColorPixel(pos)) { return 0; }  // Target
         if(BFS_Class.Gray   == this.getColorPixel(pos)) { return 1; }  // Path
@@ -79,12 +81,12 @@ public final class BFS_Class
         return -1;  //Error
     }
     
-    public boolean isGoal(Pos pos) 
+    private boolean isGoal(Pos pos) 
     {
         return (BFS_Class.Groc == this.getColorPixel(pos));
     }
     
-    public void iniMat() 
+    private void iniMat() 
     {
     for (int i = 0; i < MAX; ++i) {
             for (int j = 0; j < MAX; ++j) {
@@ -93,7 +95,7 @@ public final class BFS_Class
         }
     }
     
-    public int calcBFS(Pos cpos) 
+    private int calcBFS(Pos cpos) 
     {        
         if (this.isAccessible(cpos) && (this.getColorPixel(cpos) == BFS_Class.Groc)) { return 0; }
         
